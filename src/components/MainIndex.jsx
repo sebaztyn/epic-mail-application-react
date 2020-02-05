@@ -1,21 +1,33 @@
 import React from "react";
-import { navigate } from "@reach/router";
+import { withRouter } from "react-router-dom";
+// import classes from "../css/mainIndex.module.scss";
 
-const MainIndex = () => {
+const MainIndex = ({ history }) => {
   const setRedirectLogin = () => {
-    return navigate("/login");
+    return history.push("/login");
   };
   const setRedirectSignup = () => {
-    return navigate("/signup");
+    return history.push("/signup");
   };
   return (
-    <div className="main-index">
-      <h2>Welcome to EPIC Mail</h2>
-      <p> Collaboration divides the task and multiplies the success</p>
-      <button onClick={setRedirectLogin}>Login</button>
-      <button onClick={setRedirectSignup}>Sign up</button>
+    <div className="flex flex-col justify-center h-full items-center">
+      <h2 className="text-6xl mb-6 font-bold text-custom-blue leading-relaxed uppercase">
+        Welcome to EPIC Mail
+      </h2>
+      <p className="text-gray-700">
+        {" "}
+        Collaboration divides the task and multiplies the success
+      </p>
+      <div className="mt-4">
+        <button onClick={setRedirectLogin} className="btn mr-4 shadow-2xl">
+          Login
+        </button>
+        <button onClick={setRedirectSignup} className="btn shadow-2xl">
+          Sign up
+        </button>
+      </div>
     </div>
   );
 };
 
-export default MainIndex;
+export default withRouter(MainIndex);

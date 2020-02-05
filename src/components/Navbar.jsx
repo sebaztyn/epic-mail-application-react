@@ -1,15 +1,36 @@
 import React from "react";
-import { Link } from "@reach/router";
+import { NavLink, useRouteMatch } from "react-router-dom";
 
 const Navbar = () => {
+  const match = useRouteMatch();
   return (
     <nav>
-      <Link to="inbox">Inbox</Link> <Link to="unread">Unread</Link>{" "}
-      <Link to="sent">Sent</Link>{" "}
-      <Link to="create_message">Compose Message</Link>{" "}
-      <Link to="new_group">Create Group</Link>{" "}
-      <Link to="my_group">My Group</Link> <Link to="deleted">Deleted</Link>{" "}
-      <Link to="draft">Draft</Link>{" "}
+      <ul>
+        <li>
+          <NavLink to={`${match.url}`}>Inbox</NavLink>{" "}
+        </li>
+        <li>
+          <NavLink to={`${match.url}/unread`}>Unread</NavLink>{" "}
+        </li>
+        <li>
+          <NavLink to={`${match.url}/sent`}>Sent</NavLink>{" "}
+        </li>
+        <li>
+          <NavLink to={`${match.url}/create_message`}>Compose Message</NavLink>{" "}
+        </li>
+        <li>
+          <NavLink to={`${match.url}/new_group`} >Create Group</NavLink>{" "}
+        </li>
+        <li>
+          <NavLink to={`${match.url}/my_group`}>My Group</NavLink>{" "}
+        </li>
+        <li>
+          <NavLink to={`${match.url}/deleted`}>Deleted</NavLink>{" "}
+        </li>
+        <li>
+          <NavLink to={`${match.url}/draft`}>Draft</NavLink>{" "}
+        </li>
+      </ul>
     </nav>
   );
 };

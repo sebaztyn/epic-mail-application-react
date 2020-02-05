@@ -1,5 +1,3 @@
-import { navigate } from "@reach/router";
-
 const initialLoginData = {
   email: "",
   password: "",
@@ -20,7 +18,7 @@ export const loginFetch = (loginData = initialLoginData) => dispatch =>
       if (response.status === 201) {
         localStorage.setItem("token", response.data[0].token);
         localStorage.setItem("email", response.data[0].email);
-        return navigate("/main/inbox");
+        return response;
       } else {
         return dispatch({
           type: "LOGIN_USER_ERROR",

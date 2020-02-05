@@ -3,6 +3,7 @@
 
 ### Node ###
 # Logs
+tailwind-full.config.js
 logs
 *.log
 npm-debug.log*

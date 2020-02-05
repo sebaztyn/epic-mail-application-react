@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { navigate } from "@reach/router";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Loading from "./Loading.jsx";
 import Message from "./Message.jsx";
@@ -111,7 +112,7 @@ const mapStateToProps = state => {
     isLoading
   };
 };
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(UnreadMessages);
+)(UnreadMessages));

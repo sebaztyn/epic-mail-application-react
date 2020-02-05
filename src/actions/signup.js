@@ -24,7 +24,7 @@ export const signupFetch = (formData = initialUserState) => dispatch =>
       if (response.status === 201) {
         localStorage.setItem("token", response.data[0].token);
         localStorage.setItem("email", response.data[0].email);
-        return navigate("/main/inbox");
+        return response;
       } else {
         return dispatch({
           type: "CREATE_USER_ERROR",
@@ -50,6 +50,7 @@ export const setErrorMessage = (active, errorMessage) => {
 };
 export const inputForm = event => {
   const { name, value } = event.target;
+  console.log(value);
   return {
     type: "INPUT_USER_DATA",
     payload: {

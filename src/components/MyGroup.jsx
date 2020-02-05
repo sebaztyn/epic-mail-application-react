@@ -51,7 +51,7 @@ export class MyGroup extends Component {
     this.setState(
       {
         group_id: +id,
-        showModal: !this.state.showModal
+        showModal: true
       },
       this.memberListHandler
     );
@@ -79,6 +79,8 @@ export class MyGroup extends Component {
       .catch(err => console.log(err));
   };
 
+  closeModal = () => this.setState({ showModal: false })
+
   render() {
     if (!localStorage.getItem("token")) return navigate("/login");
     const {
@@ -103,6 +105,7 @@ export class MyGroup extends Component {
             {member.firstname} {member.lastname}
           </em>
         </strong>
+        <button onClick={this.closeModal}>Close</button>
       </div>
     ));
     if (isLoading === true) return <Loading />;

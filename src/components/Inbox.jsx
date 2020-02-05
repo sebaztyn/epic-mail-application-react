@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import { navigate } from "@reach/router";
 import Loading from "./Loading.jsx";
 import Message from "./Message.jsx";
@@ -11,7 +11,7 @@ import {
 } from "../actions/messagesAction";
 import { connect } from "react-redux";
 
-export class Inbox extends PureComponent {
+export class Inbox extends Component {
   componentDidMount() {
     const { fetchData } = this.props;
     this.intervalFetch = setInterval(fetchData, 8000);

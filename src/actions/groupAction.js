@@ -41,9 +41,3 @@ export const submitForm = groupName => dispatch => {
       })
   );
 };
-// return {
-//   type: 'CREATE_A_NEW_GROUP',
-//   payload:{
-//     name: groupName
-//   }
-// }

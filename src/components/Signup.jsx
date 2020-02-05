@@ -26,7 +26,12 @@ class Signup extends Component {
       recoveryEmail
     };
     if (password !== confirm_password) return setPasswordError();
-    return createUser(userData);
+    return createUser(userData).then(response => {
+      const { history } = this.props;
+      if (response.status === 201) {
+        return history.replace("/main");
+      }
+    });
   };
 
   render() {
@@ -81,10 +86,12 @@ class Signup extends Component {
             placeholder="Enter Recovery Email Address"
           />
           <Notification message={errorMessage} status={active} />
-          <button onClick={this.handleSignupSubmit} type="button">
+          <button type="submit" className="btn">
             Signup
           </button>{" "}
-          <button type="reset">Reset</button>
+          <button type="reset" className="btn">
+            Reset
+          </button>
         </form>
       </div>
     );
@@ -110,7 +117,6 @@ const mapDispatchToProps = dispatch => {
     setPasswordError: () =>
       dispatch(setErrorMessage(true, "Passwords do not match. Try again")),
     handleInputChange: event => dispatch(inputForm(event)),
-    dispatch,
     createUser: userData => dispatch(signupFetch(userData))
   };
 };

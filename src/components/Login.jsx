@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { navigate } from "@reach/router";
+//import { navigate } from "@reach/router";
+import { withRouter, Redirect } from "react-router-dom";
 //import { loginFetch } from "./fetch";
+import classes from "../css/login.module.scss";
 import { connect } from "react-redux";
 import Notification from "./Notification.jsx";
 import { setLoginInput, loginFetch } from "../actions/login";
@@ -8,7 +10,12 @@ import { setLoginInput, loginFetch } from "../actions/login";
 class Login extends Component {
   handleSubmit = () => {
     const { email, password, submitUserData } = this.props;
-    return submitUserData({ email, password });
+    return submitUserData({ email, password }).then(response => {
+      const { history } = this.props;
+      if (response.status === 201) {
+        return history.replace("/main");
+      }
+    });
   };
 
   render() {
@@ -20,7 +27,7 @@ class Login extends Component {
       errorMessage
     } = this.props;
     return (
-      <div>
+      <div className={classes.test}>
         <h3>Communicate and Collaborate</h3>
         <h3>Welcome to EPIC Mail</h3>
         <div className="login-box">
@@ -42,8 +49,15 @@ class Login extends Component {
             placeholder="Enter Password"
           />
           <Notification message={errorMessage} status={active} />
-          <button onClick={this.handleSubmit}>Login</button>{" "}
-          <button onClick={() => navigate("/signup")}>Signup</button>
+          <button onClick={this.handleSubmit} className="btn">
+            Login
+          </button>{" "}
+          <button
+            onClick={() => this.props.history.push("/signup")}
+            className="btn"
+          >
+            Signup
+          </button>
         </div>
       </div>
     );
@@ -66,7 +80,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Login);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Login)
+);

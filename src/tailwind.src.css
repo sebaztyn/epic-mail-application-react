@@ -1,0 +1,17 @@
+@tailwind base;
+
+@tailwind components;
+
+.btn {
+  @apply inline-block text-white px-8 py-3 bg-pink-700 font-semibold rounded-sm uppercase tracking-widest;
+}
+.btn:hover {
+  @apply bg-pink-600;
+}
+.btn:focus {
+  @apply outline-none shadow-outline;
+}
+.btn:active {
+  @apply bg-pink-900;
+}
+@tailwind utilities;

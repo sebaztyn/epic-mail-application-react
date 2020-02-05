@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Router, navigate } from "@reach/router";
+// import { Router, navigate } from "@reach/router";
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import Navbar from "./Navbar.jsx";
 import Inbox from "./Inbox.jsx";
 import SentMessage from "./SentMessage.jsx";
@@ -11,22 +12,23 @@ import CreateGroup from "./CreateGroup.jsx";
 
 class MessageIndex extends Component {
   render() {
-    if (!localStorage.getItem("token")) return navigate("/login");
+    const {path} = this.props.match;
+    if (!localStorage.getItem("token")) return <Redirect to="login" />;
     return (
       <div>
         <Navbar />
-        <Router>
-          <Inbox path="/inbox" />
-          <CreateMessage path="/create_message" />
-          <SentMessage path="/sent" />
-          <UnreadMessages path="/unread" />
-          <GroupIndex path="/group" />
-          <MyGroup path="/my_group" />
-          <CreateGroup path="new_group" />
-        </Router>
+        <Switch>
+          <Route path={path} component={Inbox} exact />
+          <Route path={`${path}/sent`} component={SentMessage} exact />
+          <Route path={`${path}/unread`} component={UnreadMessages} exact />
+          <Route path={`${path}/create_message`} component={CreateMessage} exact />
+          <Route path={`${path}/group`} component={GroupIndex} exact />
+          <Route path={`${path}/my_group`} component={MyGroup} exact />
+          <Route path={`${path}/new_group`} component={CreateGroup} exact />
+        </Switch>
       </div>
     );
   }
 }
 
-export default MessageIndex;
+export default withRouter(MessageIndex);
