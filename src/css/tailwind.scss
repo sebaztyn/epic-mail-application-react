@@ -634,15 +634,49 @@ video {
   padding-right: 2rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  background-color: #b83280;
+  background-color: #e53e3e;
   font-weight: 600;
   border-radius: 0.125rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+}
+
+.bg-blend {
+  mix-blend-mode: screen;
+}
+
+.form-buttons input::before {
+  position: absolute;
+  content: "login";
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background-color: #e53e3e;
+  text-align: center;
+  text-transform: uppercase;
+  -webkit-transition: left 0.3s linear;
+  transition: left 0.3s linear;
+  visibility: visible;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-pack: center;
+          justify-content: center;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.form-buttons input:checked::before {
+  content: "signup";
+  left: 50%;
 }
 
 .btn:hover {
-  background-color: #d53f8c;
+  background-color: #f56565;
 }
 
 .btn:focus {
@@ -651,7 +685,7 @@ video {
 }
 
 .btn:active {
-  background-color: #702459;
+  background-color: #9b2c2c;
 }
 
 .sr-only {

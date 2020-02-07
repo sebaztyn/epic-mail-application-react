@@ -50,7 +50,6 @@ export const setErrorMessage = (active, errorMessage) => {
 };
 export const inputForm = event => {
   const { name, value } = event.target;
-  console.log(value);
   return {
     type: "INPUT_USER_DATA",
     payload: {

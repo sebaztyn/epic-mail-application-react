@@ -9,9 +9,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "tailwind:css": "postcss src/tailwind.src.css -o src/css/tailwind.scss",
     "tailwind:watch": "postcss src/tailwind.src.css -o src/css/tailwind.scss --watch",
+    "nodemon:start": "nodemon -w webpack.config.js -x webpack-dev-server -- --inline --open --compress --mode development",
     "build": "npm run tailwind:css && webpack --mode production --progress",
     "dev": "npm run tailwind:css && webpack --mode development --progress",
-    "start": "npm run tailwind:css && nodemon -w webpack.config.js -x webpack-dev-server -- --inline --open --compress --mode development"
+    "start": "npm run tailwind:css && npm run nodemon:start"
   },
   "keywords": [],
   "author": "",

@@ -5,7 +5,8 @@ import Notification from "./Notification.jsx";
 import { setErrorMessage, signupFetch, inputForm } from "../actions/signup";
 
 class Signup extends Component {
-  handleSignupSubmit = () => {
+  handleSignupSubmit = e => {
+    e.preventDefault();
     const {
       firstName,
       lastName,
@@ -38,62 +39,74 @@ class Signup extends Component {
     const { active, handleInputChange, errorMessage } = this.props;
 
     return (
-      <div>
-        <h3>Communicate and Collaborate</h3>
-        <h3>Welcome to EPIC Mail</h3>
-        <form onSubmit={this.handleSignupSubmit} className="signup-box">
-          <p className="box-message">Sign up for an Account Today</p>
-          <input
-            type="text"
-            name="firstName"
-            onChange={handleInputChange}
-            placeholder="First Name"
-          />
-          <input
-            type="text"
-            name="lastName"
-            onChange={handleInputChange}
-            placeholder="Last Name"
-          />
-          <input
-            type="text"
-            name="username"
-            onChange={handleInputChange}
-            placeholder="Username"
-          />
-          <input
-            type="email"
-            name="email"
-            onChange={handleInputChange}
-            placeholder="Email Address"
-          />
-          <input
-            type="password"
-            name="password"
-            onChange={handleInputChange}
-            placeholder="Password"
-          />
-          <input
-            type="password"
-            name="confirm_password"
-            onChange={handleInputChange}
-            placeholder="Confirm Password"
-          />
-          <input
-            type="email"
-            name="recoveryEmail"
-            onChange={handleInputChange}
-            placeholder="Enter Recovery Email Address"
-          />
-          <Notification message={errorMessage} status={active} />
-          <button type="submit" className="btn">
+      <form onSubmit={this.handleSignupSubmit}>
+        <p className="box-message">Sign up for an Account Today</p>
+        <input
+          type="text"
+          name="firstName"
+          onChange={handleInputChange}
+          placeholder="First Name"
+          className="mt-3 px-3 py-1 w-8/12"
+        />
+        <br />
+        <input
+          type="text"
+          name="lastName"
+          onChange={handleInputChange}
+          placeholder="Last Name"
+          className="mt-3 px-3 py-1 w-8/12"
+        />
+        <br />
+        <input
+          type="text"
+          name="username"
+          onChange={handleInputChange}
+          placeholder="Username"
+          className="mt-3 px-3 py-1 w-8/12"
+        />
+        <br />
+        <input
+          type="email"
+          name="email"
+          onChange={handleInputChange}
+          placeholder="Email Address"
+          className="mt-3 px-3 py-1 w-8/12"
+        />
+        <br />
+        <input
+          type="password"
+          name="password"
+          onChange={handleInputChange}
+          placeholder="Password"
+          className="mt-3 px-3 py-1 w-8/12"
+        />
+        <br />
+        <input
+          type="password"
+          name="confirm_password"
+          onChange={handleInputChange}
+          placeholder="Confirm Password"
+          className="mt-3 px-3 py-1 w-8/12"
+        />
+        <br />
+        <input
+          type="email"
+          name="recoveryEmail"
+          onChange={handleInputChange}
+          placeholder="Enter Recovery Email Address"
+          className="mt-3 px-3 py-1 w-8/12"
+        />
+        <br />
+        <Notification message={errorMessage} status={active} />
+        <div className="mt-4 flex">
+          <button type="submit" className="btn mr-4 flex-1">
             Signup
-          </button>{" "}
-          <button type="reset" className="btn">
+          </button>
+          <button type="reset" className="btn flex-1">
             Reset
           </button>
-        </form>
-      </div>
+        </div>
+      </form>
     );
   }
 }
