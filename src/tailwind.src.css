@@ -9,7 +9,7 @@
   mix-blend-mode: screen;
 }
 .form-buttons input::before {
-  position: absolute;
+  /* position: absolute;
   content: "login";
   left: 0;
   top: 0;
@@ -24,12 +24,16 @@
   flex-direction: column;
   justify-content: center;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.1em; */
 }
-.form-buttons input:checked::before {
+.form-buttons > span:first-of-type {
+  left: 0%;
+  transition: left 0.3s linear;
+}
+/* .form-buttons input:checked ~ span:first-of-type {
   content: "signup";
   left: 50%;
-}
+} */
 .btn:hover {
   @apply bg-red-500;
 }

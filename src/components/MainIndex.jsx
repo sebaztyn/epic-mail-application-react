@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useState, useEffect, useRef } from "react";
 import { withRouter, useHistory } from "react-router-dom";
 //import { connect, useSelector, useDispatch } from "react-redux";
 import Login from "./Login.jsx";
@@ -8,6 +10,25 @@ import Signup from "./Signup.jsx";
 
 const MainIndex = () => {
   const [isChecked, toggleCheckbox] = useState(false);
+  const signupRef = useRef();
+  const loginRef = useRef();
+  const clickHandler = event => {
+    if (
+      !(loginRef.current === event.target) ||
+      !(signupRef.current === event.target)
+    ) {
+      //return toggleCheckbox(false);
+    }
+    console.log(signupRef.current === event.target, "!!!!!!");
+    console.log(loginRef.current === event.target, "<<<<>>>>");
+    console.log(event.target);
+  };
+  useEffect(() => {
+    window.addEventListener("click", clickHandler);
+    return () => {
+      window.removeEventListener("click", clickHandler);
+    };
+  });
   const handleToggle = () => toggleCheckbox(prevState => !prevState);
   return (
     <div className="flex flex-col sm:flex-row min-h-full items-center bg-gray-100 max-w-5xl mx-auto shadow-xl rounded-lg text-custom-blue">
@@ -24,22 +45,24 @@ const MainIndex = () => {
       </div>
       <div className="flex-1 min-h-full m-4 sm:h-screen w-10/12">
         <div className="h-12 relative flex flex-row mb-8 form-buttons">
-          <label
-            htmlFor="mycheckbox"
-            className="absolute left-0 top-0 bottom-0 w-full h-full text-gray-300 z-10"
+          <span
+            className="absolute top-0 h-full w-1/2 bg-red-600 text-gray-300 flex justify-center items-center font-bold uppercase tracking-widest"
+            style={{ left: isChecked === true ? `${50}%` : `${0}%` }}
           >
-            <input
-              type="checkbox"
-              checked={isChecked}
-              onChange={handleToggle}
-              className="invisible"
-              id="mycheckbox"
-            />
-          </label>
-          <span className="uppercase flex-1 self-center font-bold text-red-600 tracking-widest">
+            {!isChecked ? "login" : "signup"}
+          </span>
+          <span
+            className="uppercase flex-1 flex justify-center items-center font-bold text-red-600 tracking-widest"
+            ref={loginRef}
+            onClick={() => toggleCheckbox(false)}
+          >
             login
           </span>
-          <span className="uppercase flex-1 self-center font-bold text-red-600 tracking-widest">
+          <span
+            className="uppercase flex-1 flex items-center justify-center font-bold text-red-600 tracking-widest"
+            ref={signupRef}
+            onClick={() => toggleCheckbox(true)}
+          >
             signup
           </span>
         </div>

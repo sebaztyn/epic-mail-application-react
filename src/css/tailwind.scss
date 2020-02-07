@@ -647,7 +647,7 @@ video {
 }
 
 .form-buttons input::before {
-  position: absolute;
+  /* position: absolute;
   content: "login";
   left: 0;
   top: 0;
@@ -656,24 +656,25 @@ video {
   background-color: #e53e3e;
   text-align: center;
   text-transform: uppercase;
-  -webkit-transition: left 0.3s linear;
   transition: left 0.3s linear;
   visibility: visible;
-  display: -webkit-box;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
-  -webkit-box-pack: center;
-          justify-content: center;
+  flex-direction: column;
+  justify-content: center;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.1em; */
 }
 
-.form-buttons input:checked::before {
+.form-buttons > span:first-of-type {
+  left: 0%;
+  -webkit-transition: left 0.3s linear;
+  transition: left 0.3s linear;
+}
+
+/* .form-buttons input:checked ~ span:first-of-type {
   content: "signup";
   left: 50%;
-}
+} */
 
 .btn:hover {
   background-color: #f56565;
