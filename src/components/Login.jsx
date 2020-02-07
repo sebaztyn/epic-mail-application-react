@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-//import { navigate } from "@reach/router";
-import { withRouter, Redirect } from "react-router-dom";
-//import { loginFetch } from "./fetch";
-import classes from "../css/login.module.scss";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Notification from "./Notification.jsx";
 import { setLoginInput, loginFetch } from "../actions/login";
@@ -14,6 +11,7 @@ class Login extends Component {
     return submitUserData({ email, password }).then(response => {
       const { history } = this.props;
       if (response.status === 201) {
+        localStorage.setItem("token", response.data[0].token);
         return history.replace("/main");
       }
     });

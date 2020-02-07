@@ -19,9 +19,6 @@ const MainIndex = () => {
     ) {
       //return toggleCheckbox(false);
     }
-    console.log(signupRef.current === event.target, "!!!!!!");
-    console.log(loginRef.current === event.target, "<<<<>>>>");
-    console.log(event.target);
   };
   useEffect(() => {
     window.addEventListener("click", clickHandler);

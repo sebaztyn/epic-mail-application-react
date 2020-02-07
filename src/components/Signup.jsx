@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-//import { signupFetch } from "./fetch";
 import { connect } from "react-redux";
 import Notification from "./Notification.jsx";
 import { setErrorMessage, signupFetch, inputForm } from "../actions/signup";
@@ -30,6 +29,7 @@ class Signup extends Component {
     return createUser(userData).then(response => {
       const { history } = this.props;
       if (response.status === 201) {
+        localStorage.setItem("token", response.data[0].token);
         return history.replace("/main");
       }
     });
