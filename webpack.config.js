@@ -4,7 +4,6 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const WebpackMd5Hash = require("webpack-md5-hash");
-const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
   entry: { main: "./src/index.js" },
