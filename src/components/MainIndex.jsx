@@ -2,9 +2,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect, useRef } from "react";
 import { withRouter, useHistory } from "react-router-dom";
+import homepageImage from "../../assets/email-3249062.png";
 //import { connect, useSelector, useDispatch } from "react-redux";
 import Login from "./Login.jsx";
-import { loginFetch } from "../actions/login";
 import Signup from "./Signup.jsx";
 // import classes from "../css/mainIndex.module.scss";
 
@@ -30,7 +30,7 @@ const MainIndex = () => {
   return (
     <div className="flex flex-col sm:flex-row min-h-full items-center bg-gray-100 max-w-5xl mx-auto shadow-xl rounded-lg text-custom-blue">
       <div
-        style={{ backgroundImage: `url("/assets/email-3249062.png")` }}
+        style={{ backgroundImage: `url(${homepageImage})` }}
         className="flex flex-col justify-center flex-1 h-full bg-cover bg-center bg-fixed bg-no-repeat min-h-screen bg-gray-900 m-4 sm:h-screen"
       >
         <h2 className="text-6xl mb-6 font-bold text-gray-300 leading-relaxed uppercase">

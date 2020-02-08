@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const WebpackMd5Hash = require("webpack-md5-hash");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: { main: "./src/index.js" },
@@ -63,6 +64,10 @@ module.exports = {
             ]
           }
         ]
+      },
+      {
+        test: /\.(png|svg|jpe?g|gif)$/,
+        loader: "url-loader"
       }
     ]
   },
@@ -73,7 +78,8 @@ module.exports = {
     new HtmlWebpackPlugin({ template: "index.html" }),
     new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
-    new WebpackMd5Hash()
+    new WebpackMd5Hash(),
+    new CopyPlugin([{ from: "./assets/", to: "assets/" }])
   ],
   resolve: {
     alias: {
