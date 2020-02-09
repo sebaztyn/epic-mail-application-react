@@ -9,8 +9,13 @@ const initialUserState = {
   errorMessage: "",
   active: false
 };
+
+const url =
+  process.env.NODE_ENV === "production"
+    ? "https://epic-mail-2018.herokuapp.com/api/v1"
+    : "http://localhost:3000/api/v1";
 export const signupFetch = (formData = initialUserState) => dispatch =>
-  fetch("https://epic-mail-2018.herokuapp.com/api/v1/auth/signup", {
+  fetch(`${url}/auth/signup`, {
     method: "POST",
     body: JSON.stringify(formData),
     headers: {

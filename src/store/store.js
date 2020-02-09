@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 import signupReducer from "../reducers/signup";
 import loginReducer from "../reducers/login";
 import messageReducer, {
@@ -7,6 +8,7 @@ import messageReducer, {
 } from "../reducers/messagesReducer";
 import groupReducer from "../reducers/groupReducer";
 //import createMessageReducer from "../reducers/createMessageReducer";
+const isDevelopment = process.env.NODE_ENV === "development";
 
 //const middleware = [thunk]
 const initialState = {
@@ -61,9 +63,6 @@ const allReducers = combineReducers({
 const store = createStore(
   allReducers,
   initialState,
-  compose(
-    applyMiddleware(thunk)
-    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
+  composeWithDevTools(compose(applyMiddleware(thunk)))
 );
 export default store;

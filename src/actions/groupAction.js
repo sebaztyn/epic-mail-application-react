@@ -9,15 +9,17 @@ export const handleInput = event => {
     }
   };
 };
-
+const url =
+  process.env.NODE_ENV === "production"
+    ? "https://epic-mail-2018.herokuapp.com/api/v1"
+    : "http://localhost:3000/api/v1";
 export const submitForm = groupName => dispatch => {
-  const url = "https://epic-mail-2018.herokuapp.com/api/v1/groups";
   const data = { name: groupName };
   const options = {
     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
   };
   return axios
-    .post(url, data, options)
+    .post(`${url}/groups`, data, options)
     .then(response => {
       const { data } = response;
       dispatch({
