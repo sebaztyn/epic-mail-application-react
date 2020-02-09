@@ -1,41 +1,43 @@
 import { fetchGET } from "../components/fetch";
 
 export const inboxAction = () => dispatch =>
-  fetchGET("http://localhost:3000/api/v1/messages").then(response => {
-    if (response.data) {
-      return dispatch({
-        type: "GET_INBOX",
-        payload: {
-          messages: response.data,
-          emptyMessage: "",
-          errorMessage: "",
-          isLoading: false
-        }
-      });
+  fetchGET("https://epic-mail-2018.herokuapp.com/api/v1/messages").then(
+    response => {
+      if (response.data) {
+        return dispatch({
+          type: "GET_INBOX",
+          payload: {
+            messages: response.data,
+            emptyMessage: "",
+            errorMessage: "",
+            isLoading: false
+          }
+        });
+      }
+      if (response.message) {
+        return dispatch({
+          type: "GET_INBOX",
+          payload: {
+            messages: [],
+            emptyMessage: response.message,
+            errorMessage: "",
+            isLoading: false
+          }
+        });
+      }
+      if (response.error) {
+        return dispatch({
+          type: "GET_INBOX",
+          payload: {
+            messages: [],
+            emptyMessage: "",
+            errorMessage: response.error,
+            isLoading: false
+          }
+        });
+      }
     }
-    if (response.message) {
-      return dispatch({
-        type: "GET_INBOX",
-        payload: {
-          messages: [],
-          emptyMessage: response.message,
-          errorMessage: "",
-          isLoading: false
-        }
-      });
-    }
-    if (response.error) {
-      return dispatch({
-        type: "GET_INBOX",
-        payload: {
-          messages: [],
-          emptyMessage: "",
-          errorMessage: response.error,
-          isLoading: false
-        }
-      });
-    }
-  });
+  );
 
 export const updateIndividualMessage = (id = null, message = {}) => ({
   type: "UPDATE_INBOX_MESSAGE_INDEX" || "UPDATE_UNREAD_MESSAGE_INDEX",
@@ -48,7 +50,9 @@ export const updateIndividualMessage = (id = null, message = {}) => ({
 export const updateMessageStatus = (messageObject = {}) => dispatch => {
   const { status, message_id } = messageObject;
   if (status === "unread") {
-    return fetchGET(`http://localhost:3000/api/v1/messages/${message_id}`)
+    return fetchGET(
+      `https://epic-mail-2018.herokuapp.com/api/v1/messages/${message_id}`
+    )
       .then(response => {
         if (response.data) {
           dispatch({
@@ -67,7 +71,7 @@ export const updateMessageStatus = (messageObject = {}) => dispatch => {
 };
 
 export const getSentMessages = () => dispatch =>
-  fetchGET("http://localhost:3000/api/v1/messages/sent")
+  fetchGET("https://epic-mail-2018.herokuapp.com/api/v1/messages/sent")
     .then(response => {
       if (response.data) {
         return dispatch({
@@ -116,7 +120,7 @@ export const getOneSentMessage = (id = null, message = {}) => {
 };
 
 export const fetchAllUnreadMessages = () => dispatch =>
-  fetchGET("http://localhost:3000/api/v1/messages/unread")
+  fetchGET("https://epic-mail-2018.herokuapp.com/api/v1/messages/unread")
     .then(response => {
       if (response.data) {
         return dispatch({
@@ -179,7 +183,7 @@ export const createMessageInputAction = event => {
 };
 
 export const submitNewMessage = formData => dispatch =>
-  fetch("http://localhost:3000/api/v1/messages", {
+  fetch("https://epic-mail-2018.herokuapp.com/api/v1/messages", {
     method: "POST",
     body: JSON.stringify(formData),
     headers: {

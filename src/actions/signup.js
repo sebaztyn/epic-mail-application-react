@@ -1,5 +1,3 @@
-import { navigate } from "@reach/router";
-
 const initialUserState = {
   firstName: "",
   lastName: "",
@@ -12,7 +10,7 @@ const initialUserState = {
   active: false
 };
 export const signupFetch = (formData = initialUserState) => dispatch =>
-  fetch("http://localhost:3000/api/v1/auth/signup", {
+  fetch("https://epic-mail-2018.herokuapp.com/api/v1/auth/signup", {
     method: "POST",
     body: JSON.stringify(formData),
     headers: {

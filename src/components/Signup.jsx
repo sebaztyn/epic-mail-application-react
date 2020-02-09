@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Notification from "./Notification.jsx";
 import { setErrorMessage, signupFetch, inputForm } from "../actions/signup";
@@ -133,7 +134,9 @@ const mapDispatchToProps = dispatch => {
     createUser: userData => dispatch(signupFetch(userData))
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Signup);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Signup)
+);

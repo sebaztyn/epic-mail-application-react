@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const handleInput = event => {
   const { name, value } = event.target;
@@ -11,33 +11,32 @@ export const handleInput = event => {
 };
 
 export const submitForm = groupName => dispatch => {
-  const url = "http://localhost:3000/api/v1/groups";
-  const data = {name: groupName};
+  const url = "https://epic-mail-2018.herokuapp.com/api/v1/groups";
+  const data = { name: groupName };
   const options = {
-    headers: {'Authorization': `Bearer ${localStorage.getItem("token")}`}
-  }
-  return (
-    axios.post(url, data, options)
-      .then(response => {
-          const {data} = response;
-          dispatch({
-            type: "CREATE_A_NEW_GROUP",
-            payload:{
-              individualGroup: data.data,
-              errorMessage: "",
-              name: ""
-            }
-          })
-      })
-      .catch(err =>{
-        const {error} = err.response.data;
-        dispatch({
-          type: "CREATE_A_NEW_GROUP",
-          payload:{
-            errorMessage: error,
-            individualGroup: {}
-          }
-        })
-      })
-  );
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+  };
+  return axios
+    .post(url, data, options)
+    .then(response => {
+      const { data } = response;
+      dispatch({
+        type: "CREATE_A_NEW_GROUP",
+        payload: {
+          individualGroup: data.data,
+          errorMessage: "",
+          name: ""
+        }
+      });
+    })
+    .catch(err => {
+      const { error } = err.response.data;
+      dispatch({
+        type: "CREATE_A_NEW_GROUP",
+        payload: {
+          errorMessage: error,
+          individualGroup: {}
+        }
+      });
+    });
 };
