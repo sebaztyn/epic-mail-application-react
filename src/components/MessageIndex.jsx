@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { Router, navigate } from "@reach/router";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
 import Inbox from "./Inbox.jsx";
@@ -15,7 +14,7 @@ class MessageIndex extends Component {
     const { path } = this.props.match;
     if (!localStorage.getItem("token")) return <Redirect to="/" />;
     return (
-      <div>
+      <div className="sm:min-w-full max-w-5xl mx-auto bg-gray-200 rounded-lg md:my-4 message-container sm:flex relative">
         <Navbar />
         <Switch>
           <Route path={path} component={Inbox} exact />

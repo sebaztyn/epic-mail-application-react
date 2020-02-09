@@ -59,16 +59,18 @@ export class UnreadMessages extends Component {
         clickHandler={this.indexHandler}
       />
     ));
-    if (isLoading === true) return <Loading />;
     return (
-      <div className="unread-messages">
-        {emptyMessage ? (
-          <p>{emptyMessage}</p>
-        ) : errorMessage ? (
-          <p>{errorMessage}</p>
-        ) : (
-          unreadMessages
-        )}
+      <div className="flex-1 lg:flex-3 pt-2 md:left-40 lg:left-20 sm:absolute md:w-1/2 lg:w-4/5 h-full xs:w-full">
+        <div className="pr-2 absolute top-0 left-0 md:h-full md:w-full lg:w-2/5 overflow-y-auto overflow-x-hidden">
+          {isLoading === true && <Loading />}
+          {emptyMessage ? (
+            <p>{emptyMessage}</p>
+          ) : errorMessage ? (
+            <p>{errorMessage}</p>
+          ) : (
+            unreadMessages
+          )}
+        </div>
         {indexId ? (
           <MessageDetails
             active={indexId}
@@ -112,7 +114,9 @@ const mapStateToProps = state => {
     isLoading
   };
 };
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UnreadMessages));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(UnreadMessages)
+);

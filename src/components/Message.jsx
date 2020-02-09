@@ -10,11 +10,7 @@ const Message = ({
 }) => {
   return (
     /* eslint-disable-next-line */
-    <div
-      className="message-item"
-      data-id={`${message_id}`}
-      onClick={clickHandler}
-    >
+    <div className="" data-id={`${message_id}`} onClick={clickHandler}>
       <p>
         <em>
           {firstname} {lastname}

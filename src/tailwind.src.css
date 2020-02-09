@@ -5,35 +5,7 @@
 .btn {
   @apply inline-block text-white px-8 py-3 bg-red-600 font-semibold rounded-sm uppercase tracking-widest mb-8;
 }
-.bg-blend {
-  mix-blend-mode: screen;
-}
-.form-buttons input::before {
-  /* position: absolute;
-  content: "login";
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 50%;
-  background-color: #e53e3e;
-  text-align: center;
-  text-transform: uppercase;
-  transition: left 0.3s linear;
-  visibility: visible;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-weight: 700;
-  letter-spacing: 0.1em; */
-}
-.form-buttons > span:first-of-type {
-  left: 0%;
-  transition: left 0.3s linear;
-}
-/* .form-buttons input:checked ~ span:first-of-type {
-  content: "signup";
-  left: 50%;
-} */
+
 .btn:hover {
   @apply bg-red-500;
 }
@@ -43,4 +15,27 @@
 .btn:active {
   @apply bg-red-800;
 }
+.scroll-bar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.navbar {
+  transition: height 0.5s linear;
+}
+@media (min-width: 640px) {
+  .navbar {
+    height: calc(100% - 1rem) !important;
+  }
+}
+.message-container {
+  height: calc(100vh - 2rem);
+}
+.bg-blend {
+  mix-blend-mode: screen;
+}
+.form-buttons > span:first-of-type {
+  left: 0%;
+  transition: left 0.3s linear;
+}
+
 @tailwind utilities;

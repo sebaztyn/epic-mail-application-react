@@ -13,7 +13,7 @@ import { hot } from "react-hot-loader/root";
 import "../css/tailwind.scss";
 
 const App = () => (
-  <div className="text-center bg-gray-400 min-h-screen text-gray-700 p-2">
+  <div className="text-center bg-gray-400 h-screen text-gray-700 p-2 overflow-hidden">
     <Router>
       <Switch>
         <Route path="/" component={MainIndex} exact></Route>

@@ -13,7 +13,7 @@ export class MessageDetails extends Component {
     } = this.props;
     return (
       <div
-        className="display-message"
+        className="absolute lg:left-40 lg:w-3/4 h-full"
         style={{ display: active ? "block" : "none" }}
       >
         <h3>

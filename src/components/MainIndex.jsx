@@ -10,23 +10,7 @@ import Signup from "./Signup.jsx";
 
 const MainIndex = () => {
   const [isChecked, toggleCheckbox] = useState(false);
-  const signupRef = useRef();
-  const loginRef = useRef();
-  const clickHandler = event => {
-    if (
-      !(loginRef.current === event.target) ||
-      !(signupRef.current === event.target)
-    ) {
-      //return toggleCheckbox(false);
-    }
-  };
-  useEffect(() => {
-    window.addEventListener("click", clickHandler);
-    return () => {
-      window.removeEventListener("click", clickHandler);
-    };
-  });
-  const handleToggle = () => toggleCheckbox(prevState => !prevState);
+
   return (
     <div className="flex flex-col sm:flex-row min-h-full items-center bg-gray-100 max-w-5xl mx-auto shadow-xl rounded-lg text-custom-blue">
       <div
@@ -50,14 +34,12 @@ const MainIndex = () => {
           </span>
           <span
             className="uppercase flex-1 flex justify-center items-center font-bold text-red-600 tracking-widest"
-            ref={loginRef}
             onClick={() => toggleCheckbox(false)}
           >
             login
           </span>
           <span
             className="uppercase flex-1 flex items-center justify-center font-bold text-red-600 tracking-widest"
-            ref={signupRef}
             onClick={() => toggleCheckbox(true)}
           >
             signup
