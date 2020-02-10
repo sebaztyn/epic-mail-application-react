@@ -8,6 +8,7 @@ import {
   getOneSentMessage,
   clearMessageStore
 } from "../actions/messagesAction";
+import { setDisplayMessageDetails } from "../actions/displayAction.js";
 
 export class SentMessage extends Component {
   componentDidMount() {
@@ -20,6 +21,7 @@ export class SentMessage extends Component {
     return this.props.clearIndividualMessage();
   }
   indexHandler = event => {
+    this.props.setDisplayMessage();
     const id = event.currentTarget.dataset.id;
     const message = this.props.messages.find(msg => {
       return msg.message_id === id;
@@ -39,7 +41,8 @@ export class SentMessage extends Component {
       emptyMessage,
       errorMessage,
       isLoading,
-      indexId
+      indexId,
+      displayMessageDetail: displayMessage
     } = this.props;
     const sentMessages = messages.map(message => (
       <Message
@@ -49,8 +52,14 @@ export class SentMessage extends Component {
       />
     ));
     return (
-      <div className="flex-1 lg:flex-3 pt-2 md:left-40 lg:left-20 sm:absolute md:w-1/2 lg:w-4/5 h-full xs:w-full">
-        <div className="pr-2 absolute top-0 left-0 md:h-full md:w-full lg:w-2/5 overflow-y-auto overflow-x-hidden">
+      <div className="flex-1 lg:flex-3 pt-2 sm:left-40 lg:left-20 sm:absolute sm:w-3/5 lg:w-4/5 h-full xs:w-full">
+        <div
+          className={`pr-2 absolute top-0 left-0 h-full xs:w-full sm:w-full lg:w-2/5 overflow-y-auto overflow-x-hidden ${
+            displayMessage === true
+              ? "xs:hidden sm:hidden md:hidden"
+              : "xs:block sm:block md:block"
+          } lg:block`}
+        >
           {isLoading === true && <Loading />}
           {emptyMessage ? (
             <p>{emptyMessage}</p>
@@ -84,20 +93,23 @@ const mapStateToProps = state => {
     indexId,
     isLoading
   } = state.messageStore;
+  const { displayMessageDetail } = state.displayMessage;
   return {
     messages,
     individualMessage,
     emptyMessage,
     errorMessage,
     indexId,
-    isLoading
+    isLoading,
+    displayMessageDetail
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     fetchAllSentMessages: () => dispatch(getSentMessages()),
     getASentMessage: (id, message) => dispatch(getOneSentMessage(id, message)),
-    clearIndividualMessage: () => dispatch(clearMessageStore())
+    clearIndividualMessage: () => dispatch(clearMessageStore()),
+    setDisplayMessage: () => dispatch(setDisplayMessageDetails(true))
   };
 };
 export default connect(

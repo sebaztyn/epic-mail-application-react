@@ -1,5 +1,7 @@
+// eslint(react-hooks/exhaustive-deps)
 import React, { useEffect } from "react";
-import { navigate } from "@reach/router";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import Loading from "./Loading.jsx";
 import Message from "./Message.jsx";
 import MessageDetails from "./MessageDetails.jsx";
@@ -9,22 +11,26 @@ import {
   updateMessageStatus,
   clearMessageStore
 } from "../actions/messagesAction";
-import { useSelector, useDispatch } from "react-redux";
+import { setDisplayMessageDetails } from "../actions/displayAction.js";
 
 const InboxMessages = () => {
+  const history = useHistory();
   let dispatch = useDispatch();
   let messageStore = useSelector(state => state.messageStore);
+  let displayMessage = useSelector(
+    state => state.displayMessage.displayMessageDetail
+  );
   useEffect(() => {
     const fetchData = dispatch(inboxAction());
     const clearMessage = dispatch(clearMessageStore());
     const intervalFetch = setInterval(() => fetchData, 8000);
-    fetchData;
     return () => {
       clearInterval(intervalFetch);
       return clearMessage;
     };
   }, [dispatch]);
-  if (!localStorage.getItem("token")) return navigate("/login");
+  // const [displayMessageDetail, setDisplayMessageDetail] = useState(false);
+  if (!localStorage.getItem("token")) return history.push("/login");
   const {
     messages,
     individualMessage,
@@ -41,6 +47,7 @@ const InboxMessages = () => {
     lastname
   } = individualMessage;
   const indexHandler = event => {
+    dispatch(setDisplayMessageDetails(true));
     const id = event.currentTarget.dataset.id;
     const message = messages.find(msg => {
       return msg.message_id === id;
@@ -58,10 +65,19 @@ const InboxMessages = () => {
       clickHandler={indexHandler}
     />
   ));
-
   return (
-    <div className="flex-1 lg:flex-3 pt-2 md:left-40 lg:left-20 sm:absolute md:w-1/2 lg:w-4/5 h-full xs:w-full">
-      <div className="pr-2 absolute top-0 left-0 md:h-full md:w-full lg:w-2/5 overflow-y-auto overflow-x-hidden">
+    <div
+      className={
+        "flex-1 lg:flex-3 pt-2 sm:left-40 lg:left-20 sm:absolute sm:w-3/5 lg:w-4/5 h-full xs:w-full"
+      }
+    >
+      <div
+        className={`pr-2 absolute top-0 left-0 h-full xs:w-full sm:w-full lg:w-2/5 overflow-y-auto overflow-x-hidden ${
+          displayMessage === true
+            ? "xs:hidden sm:hidden md:hidden"
+            : "xs:block sm:block md:block"
+        } lg:block`}
+      >
         {isLoading === true && <Loading />}
         {emptyMessage ? (
           <p>{emptyMessage}</p>

@@ -23,7 +23,7 @@ export class Loading extends Component {
     clearInterval(this.interval);
   }
   render() {
-    return <p>{this.state.text}</p>;
+    return <p className="uppercase font-bold">{this.state.text}</p>;
   }
 }
 

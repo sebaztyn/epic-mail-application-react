@@ -7,10 +7,8 @@ import messageReducer, {
   createMessageReducer
 } from "../reducers/messagesReducer";
 import groupReducer from "../reducers/groupReducer";
-//import createMessageReducer from "../reducers/createMessageReducer";
-const isDevelopment = process.env.NODE_ENV === "development";
+import displayMessageReducer from "../reducers/displayMessageReducer.js";
 
-//const middleware = [thunk]
 const initialState = {
   user: {
     firstName: "",
@@ -51,6 +49,9 @@ const initialState = {
     onSuccess: "",
     errorMessage: "",
     name: ""
+  },
+  displayMessage: {
+    displayMessageDetail: false
   }
 };
 const allReducers = combineReducers({
@@ -58,7 +59,8 @@ const allReducers = combineReducers({
   login: loginReducer,
   messageStore: messageReducer,
   createMessage: createMessageReducer,
-  groupStore: groupReducer
+  groupStore: groupReducer,
+  displayMessage: displayMessageReducer
 });
 const store = createStore(
   allReducers,
