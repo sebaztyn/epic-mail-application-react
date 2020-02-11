@@ -4,12 +4,19 @@ module.exports = {
       colors: {
         "custom-blue": "#162855"
       },
+      spacing: {
+        "90": "90%",
+        "70": "70%"
+      },
       height: {
         half: "50%",
         "30": "30%",
         "2-7": "2.7px",
         "3px": "3px",
-        "view-height-forced": "95vh !important"
+        "view-height-forced": "95vh !important",
+        "70": "70%",
+        "20": "20%",
+        "25": "25%"
       },
       transitionProperty: {
         " height": "height"

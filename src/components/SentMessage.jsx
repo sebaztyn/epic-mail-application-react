@@ -60,6 +60,9 @@ export class SentMessage extends Component {
               : "xs:block sm:block md:block"
           } lg:block`}
         >
+          <div className="uppercase text-gray-300 bg-gray-900 font-bold mt-2 mx-auto h-10 flex justify-center items-center w-10/12 sm:w-11/12 mb-4 xs:rounded-t-lg sm:rounded-tr-lg">
+            sent messages
+          </div>
           {isLoading === true && <Loading />}
           {emptyMessage ? (
             <p>{emptyMessage}</p>

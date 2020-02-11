@@ -66,11 +66,7 @@ const InboxMessages = () => {
     />
   ));
   return (
-    <div
-      className={
-        "flex-1 lg:flex-3 pt-2 sm:left-40 lg:left-20 sm:absolute sm:w-3/5 lg:w-4/5 h-full xs:w-full"
-      }
-    >
+    <div className="flex-1 lg:flex-3 pt-2 sm:left-40 lg:left-20 sm:absolute sm:w-3/5 lg:w-4/5 h-full xs:w-full mr-4">
       <div
         className={`pr-2 absolute top-0 left-0 h-full xs:w-full sm:w-full lg:w-2/5 overflow-y-auto overflow-x-hidden ${
           displayMessage === true
@@ -78,6 +74,9 @@ const InboxMessages = () => {
             : "xs:block sm:block md:block"
         } lg:block`}
       >
+        <div className="uppercase text-gray-300 bg-gray-900 font-bold mt-2 mx-auto h-10 flex justify-center items-center w-10/12 sm:w-11/12 mb-4 xs:rounded-t-lg sm:rounded-tr-lg">
+          inbox
+        </div>
         {isLoading === true && <Loading />}
         {emptyMessage ? (
           <p>{emptyMessage}</p>

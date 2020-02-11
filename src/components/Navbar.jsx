@@ -26,7 +26,7 @@ const Navbar = () => {
   return (
     <div className="absolute top-0 mx-2 pt-2 pb-2 pr-2 md:flex-1 xs:w-full max-w-full lg:w-1/5 sm:w-2/5 h-full">
       <div
-        className="w-10 h-10 xs:flex flex-col bg-gray-900 absolute left-0 top-0 m-2 hidden p-1 rounded-sm z-10"
+        className="w-10 h-10 xs:flex flex-col bg-gray-900 absolute left-0 top-0 m-2 hidden p-1 rounded-sm z-10 outline-none"
         onClick={openNavBarHandler}
         tabIndex="0"
         role="button"
